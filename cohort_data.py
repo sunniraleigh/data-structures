@@ -24,6 +24,7 @@ def all_houses(filename):
       words = line.split("|")
       if words[2] != "":
         houses.add(words[2])
+    file.close()
     return houses
 
 
@@ -54,8 +55,30 @@ def students_by_cohort(filename, cohort='All'):
     Return:
       - list[list]: a list of lists
     """
-
+  
     students = []
+    file = open(filename)
+
+    for line in file:
+      line = line.rstrip()
+      words = line.split('|')
+
+      if words[2] != '':
+        # cohort is index 4
+        students_cohort = words[4]
+        if cohort == "All":
+          students.append(f"{words[0]} {words[1]}")
+        elif cohort == students_cohort:
+          students.append(f"{words[0]} {words[1]}")
+
+    file.close()
+        
+
+    # retreive student's name (concatenate name)
+
+    # nest condition for sorting them by cohort
+
+    # return a list of students full name if no second argument was entered otherwise return a list of students sorted by cohort
 
     # TODO: replace this with your code
 
